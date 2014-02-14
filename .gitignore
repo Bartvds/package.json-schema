@@ -1,0 +1,11 @@
+/.idea
+/.vagrant
+
+/node_modules
+
+/*.tgz
+
+tmp/
+dump/
+
+npm-debug.log
