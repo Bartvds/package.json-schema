@@ -5,7 +5,6 @@ var tvMod = require('tv4')
 var fs = require('fs');
 var path = require('path');
 var util = require('util');
-var pointer = require('json-pointer');
 
 var reporter = require('tv4-reporter').getReporter(require('miniwrite').log(), require('ministyle').ansi());
 
@@ -26,7 +25,7 @@ function getPointer(ref) {
 		case 'standard':
 			return '#/definitions/standard';
 		default:
-			return '';
+			return null;
 	}
 }
 
@@ -111,7 +110,7 @@ function run(schemaPath) {
 	});
 }
 
-run('v1/schema').then(function (res) {
+run('v1/schema.json').then(function (res) {
 	console.log('');
 	var bad = res.filter(function (job) {
 		return (job.success !== true);
