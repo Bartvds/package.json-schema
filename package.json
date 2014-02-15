@@ -23,10 +23,13 @@
       "url": "https://raw.github.com/Bartvds/package.json-schema/master/LICENSE-MIT.txt"
     }
   ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "bugs": {
     "url": "https://github.com/Bartvds/package.json-schema/issues"
   },
-  "main": "./vi/schema.json",
+  "main": "./index.js",
   "scripts": {
     "test": "node ./test/test.js"
   },

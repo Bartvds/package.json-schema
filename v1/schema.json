@@ -1,13 +1,14 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema",
-	"title": "package.json-schema v1",
+	"id": "lib://package.json",
+	"title": "package.json-schema",
 	"description": "JSON Schema for node/npm package.json",
-	"$ref": "#/definitions/standard",
+	"$ref": "lib://package.json#/definitions/standard",
 	"definitions": {
 		"minimal": {
 			"allOf": [
 				{
-					"$ref": "#/definitions/structure"
+					"$ref": "lib://package.json#/definitions/structure"
 				},
 				{
 					"required": [
@@ -20,7 +21,7 @@
 		"standard": {
 			"allOf": [
 				{
-					"$ref": "#/definitions/structure"
+					"$ref": "lib://package.json#/definitions/structure"
 				},
 				{
 					"required": [
@@ -50,12 +51,18 @@
 							}
 						},
 						"author": {
-							"$ref": "#/definitions/person-object"
+							"$ref": "lib://package.json#/definitions/person-object"
 						},
 						"contributors": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/person-object"
+								"$ref": "lib://package.json#/definitions/person-object"
+							}
+						},
+						"maintainers": {
+							"type": "array",
+							"items": {
+								"$ref": "lib://package.json#/definitions/person-object"
 							}
 						}
 					}
@@ -66,10 +73,10 @@
 			"type": "object",
 			"properties": {
 				"name": {
-					"$ref": "#/definitions/identifier"
+					"$ref": "lib://package.json#/definitions/name"
 				},
 				"version": {
-					"$ref": "#/definitions/semver"
+					"$ref": "lib://package.json#/definitions/semver"
 				},
 				"description": {
 					"type": "string",
@@ -79,35 +86,42 @@
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/identifier"
+						"$ref": "lib://package.json#/definitions/name"
 					}
 				},
 				"author": {
-					"$ref": "#/definitions/person"
+					"$ref": "lib://package.json#/definitions/person"
 				},
 				"contributors": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/person"
+						"$ref": "lib://package.json#/definitions/person"
+					}
+				},
+				"maintainers": {
+					"type": "array",
+					"uniqueItems": true,
+					"items": {
+						"$ref": "lib://package.json#/definitions/person"
 					}
 				},
 				"homepage": {
-					"$ref": "#/definitions/url"
+					"$ref": "lib://package.json#/definitions/uri-http"
 				},
 				"repository": {
-					"$ref": "#/definitions/repository"
+					"$ref": "lib://package.json#/definitions/repository"
 				},
 				"man": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						},
 						{
 							"type": "array",
 							"uniqueItems": true,
 							"items": {
-								"$ref": "#/definitions/path"
+								"$ref": "lib://package.json#/definitions/path"
 							}
 						}
 					]
@@ -115,7 +129,7 @@
 				"bugs": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/url"
+							"$ref": "lib://package.json#/definitions/uri-http"
 						},
 						{
 							"type": "object",
@@ -124,23 +138,23 @@
 							],
 							"properties": {
 								"url": {
-									"$ref": "#/definitions/url"
+									"$ref": "lib://package.json#/definitions/uri-http"
 								},
 								"email": {
-									"$ref": "#/definitions/email"
+									"$ref": "lib://package.json#/definitions/email"
 								}
 							}
 						}
 					]
 				},
 				"license": {
-					"$ref": "#/definitions/licence"
+					"$ref": "lib://package.json#/definitions/licence"
 				},
 				"licenses": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/licence"
+						"$ref": "lib://package.json#/definitions/licence"
 					}
 				},
 				"private": {
@@ -150,22 +164,22 @@
 					"type": "boolean"
 				},
 				"engines": {
-					"$ref": "#/definitions/string-map"
+					"$ref": "lib://package.json#/definitions/string-map"
 				},
 				"engineStrict": {
 					"type": "boolean"
 				},
 				"main": {
-					"$ref": "#/definitions/path"
+					"$ref": "lib://package.json#/definitions/path"
 				},
 				"bin": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						},
 						{
 
-							"$ref": "#/definitions/path-map"
+							"$ref": "lib://package.json#/definitions/path-map"
 						}
 					]
 				},
@@ -173,21 +187,21 @@
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/path"
+						"$ref": "lib://package.json#/definitions/path"
 					}
 				},
 				"os": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/identifier"
+						"$ref": "lib://package.json#/definitions/identifier"
 					}
 				},
 				"cpu": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/identifier"
+						"$ref": "lib://package.json#/definitions/identifier"
 					}
 				},
 				"config": {
@@ -200,46 +214,46 @@
 					"type": "object",
 					"properties": {
 						"lib": {
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						},
 						"bin": {
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						},
 						"man": {
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						},
 						"doc": {
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						},
 						"example": {
-							"$ref": "#/definitions/path"
+							"$ref": "lib://package.json#/definitions/path"
 						}
 					}
 				},
 				"scripts": {
-					"$ref": "#/definitions/string-map"
+					"$ref": "lib://package.json#/definitions/string-map"
 				},
 				"dependencies": {
-					"$ref": "#/definitions/dependency-map"
+					"$ref": "lib://package.json#/definitions/dependency-map"
 				},
 				"devDependencies": {
-					"$ref": "#/definitions/dependency-map"
+					"$ref": "lib://package.json#/definitions/dependency-map"
 				},
 				"bundledDependencies": {
-					"$ref": "#/definitions/dependency-map"
+					"$ref": "lib://package.json#/definitions/dependency-map"
 				},
 				"bundleDependencies": {
-					"$ref": "#/definitions/dependency-map"
+					"$ref": "lib://package.json#/definitions/dependency-map"
 				},
 				"optionalDependencies": {
-					"$ref": "#/definitions/dependency-map"
+					"$ref": "lib://package.json#/definitions/dependency-map"
 				},
 				"peerDependencies": {
-					"$ref": "#/definitions/dependency-map"
+					"$ref": "lib://package.json#/definitions/dependency-map"
 				}
 			}
 		},
-		"url": {
+		"uri-http": {
 			"type": "string",
 			"pattern": "^https?:\/\/"
 		},
@@ -251,13 +265,17 @@
 			"type": "string",
 			"minLength": 1
 		},
+		"name": {
+			"type": "string",
+			"pattern": "^[A-Za-z](?:[_\\.-]?[A-Za-z0-9]+)*$"
+		},
 		"identifier": {
 			"type": "string",
-			"pattern": "^[\\w_-]+$"
+			"pattern": "^[A-Za-z](?:[_-]?[A-Za-z0-9]+)*$"
 		},
 		"semver": {
 			"type": "string",
-			"pattern": "^\\d+\\.\\d+\\.\\d+"
+			"pattern": "^\\d+\\.\\d+\\.\\d+(?:-[a-z]+(?:[_\\.-]*[a-z0-9]+)*)*$"
 		},
 		"type-url": {
 			"type": "object",
@@ -272,13 +290,13 @@
 					"pattern": "[a-zA-Z]"
 				},
 				"url": {
-					"$ref": "#/definitions/url"
+					"$ref": "lib://package.json#/definitions/uri-http"
 				}
 			}
 
 		},
 		"repository": {
-			"$ref": "#/definitions/type-url"
+			"$ref": "lib://package.json#/definitions/type-url"
 		},
 		"licence": {
 			"oneOf": [
@@ -287,7 +305,7 @@
 					"pattern": "[a-zA-Z]"
 				},
 				{
-					"$ref": "#/definitions/licence-object"
+					"$ref": "lib://package.json#/definitions/licence-object"
 				}
 			]
 		},
@@ -300,7 +318,7 @@
 					"pattern": "[a-zA-Z]"
 				},
 				"url": {
-					"$ref": "#/definitions/url"
+					"$ref": "lib://package.json#/definitions/uri-http"
 				}
 			}
 		},
@@ -311,7 +329,7 @@
 					"pattern": "[a-zA-Z]"
 				},
 				{
-					"$ref": "#/definitions/person-object"
+					"$ref": "lib://package.json#/definitions/person-object"
 				}
 			]
 		},
@@ -326,10 +344,10 @@
 					"pattern": "[a-zA-Z]"
 				},
 				"email": {
-					"$ref": "#/definitions/email"
+					"$ref": "lib://package.json#/definitions/email"
 				},
 				"url": {
-					"$ref": "#/definitions/url"
+					"$ref": "lib://package.json#/definitions/uri-http"
 				}
 			}
 		},
@@ -347,13 +365,13 @@
 			"additionalProperties": false,
 			"patternProperties": {
 				".+": {
-					"$ref": "#/definitions/path",
+					"$ref": "lib://package.json#/definitions/path",
 					"pattern": "[a-zA-Z]"
 				}
 			}
 		},
 		"dependency-map": {
-			"$ref": "#/definitions/string-map"
+			"$ref": "lib://package.json#/definitions/string-map"
 		}
 	}
 }
