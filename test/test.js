@@ -113,17 +113,23 @@ function run(schemaPath) {
 
 run('v1/schema').then(function (res) {
 	console.log('');
-	res.filter(function (job) {
+	var bad = res.filter(function (job) {
 		return (job.success !== true);
-	}).forEach(function (job) {
+	});
+	bad.forEach(function (job) {
 		console.log(job.msg);
 		reporter.reportResult(reporter.createTest(job.schema, job.json, job.label, job.res, true), '   ');
 		// console.log(util.inspect(job.res.error, false, 0));
 	});
 	console.log('');
 	console.log('done!');
+	if (bad.length > 0) {
+		process.exit(1);
+	}
 }).catch(function (err) {
 	console.log('');
 	console.log('error!');
 	console.log(err.stack);
+
+	process.exit(1);
 });
