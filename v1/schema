@@ -2,12 +2,7 @@
 	"$schema": "http://json-schema.org/draft-04/schema",
 	"title": "package.json-schema v1",
 	"description": "JSON Schema for node/npm package.json",
-	"type": "object",
-	"allOf": [
-		{
-			"$ref": "#/definitions/standard"
-		}
-	],
+	"$ref": "#/definitions/standard",
 	"definitions": {
 		"minimal": {
 			"allOf": [

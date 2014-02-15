@@ -1,4 +1,5 @@
 'use strict';
+
 var Promise = require('bluebird');
 var tvMod = require('tv4')
 var fs = require('fs');
@@ -9,18 +10,12 @@ var pointer = require('json-pointer');
 var reporter = require('tv4-reporter').getReporter(require('miniwrite').log(), require('ministyle').ansi());
 
 var glob = Promise.promisify(require('glob'));
-
 var readFile = Promise.promisify(fs.readFile);
-
-function onError(err) {
-	console.log(err);
-}
 
 var baseDir = path.dirname(module.filename);
 console.log(baseDir);
 
 var getExp = /^(.+?)[\\\/]([\w\.-]+)[\\\/]/;
-
 
 function getPointer(ref) {
 	switch (ref) {
@@ -45,7 +40,6 @@ function run(schemaPath) {
 	return loadJSON(schemaPath).then(function (schema) {
 		var tv4 = tvMod.freshApi();
 		tv4.addSchema('', schema);
-		console.log(tv4.getSchemaMap());
 
 		return glob(path.join('*/*/package.json'), {cwd: baseDir}).then(function (files) {
 			return Promise.all(files.reduce(function (memo, file) {
@@ -55,7 +49,8 @@ function run(schemaPath) {
 					return memo;
 				}
 				var base = path.dirname(path.join(baseDir, file));
-				console.log(file);
+
+				console.log(' - ' + file);
 
 				var job = {
 					file: file,
@@ -69,9 +64,9 @@ function run(schemaPath) {
 					res: null,
 					opts: null,
 					error: null,
+					msg: null,
 					success: true
 				};
-				job.label = job.type + '/' + job.name;
 
 				memo.push(Promise.all([
 					loadJSON(job.jsonPath),
@@ -95,16 +90,16 @@ function run(schemaPath) {
 					job.schema = schema;
 					job.pointer = getPointer(opts.schema);
 
-					job.res = tv4.validateResult(json, job.pointer);
+					job.res = tv4.validateResult(json, job.pointer || job.schema, true);
 					if (job.type === 'pass') {
 						if (!job.res.valid || job.res.missing.length > 0) {
-							console.log('expected ' + job.label + ' to be valid');
+							job.msg = 'expected ' + job.label + ' to be valid';
 							job.success = false;
 						}
 					}
 					else if (job.type === 'fail') {
 						if (job.res.valid || job.res.missing.length > 0) {
-							console.log('expected ' + job.label + ' to be invalid');
+							job.msg = 'expected ' + job.label + ' to be invalid';
 							job.success = false;
 						}
 					}
@@ -117,14 +112,18 @@ function run(schemaPath) {
 }
 
 run('v1/schema').then(function (res) {
-	console.log('done!');
-	// console.log(util.inspect(res, false, 2));
+	console.log('');
 	res.filter(function (job) {
 		return (job.success !== true);
 	}).forEach(function (job) {
+		console.log(job.msg);
 		reporter.reportResult(reporter.createTest(job.schema, job.json, job.label, job.res, true), '   ');
+		// console.log(util.inspect(job.res.error, false, 0));
 	});
+	console.log('');
+	console.log('done!');
 }).catch(function (err) {
+	console.log('');
 	console.log('error!');
 	console.log(err.stack);
 });
