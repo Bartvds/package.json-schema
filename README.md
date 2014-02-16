@@ -4,7 +4,6 @@
 
 > JSON Schema for node/npm package.json
 
-Format is [v4](http://json-schema.org/)
 
 There are a few sub-schemas defined at the following JSON Pointers:
 
@@ -17,6 +16,8 @@ There are a few sub-schemas defined at the following JSON Pointers:
 
 The root schema linked to `lib://package.json#/definitions/standard`.
 
+The JSON Schema is [draft v4](http://json-schema.org/).
+
 ## Usage
 
 The schema are JSON files are located in the `/v#` folders in the repo.
@@ -28,14 +29,38 @@ Most convenient way is to access is as a module:
 ````shell
 $ npm install package.json-schema
 ````
+
+Get the schema object (lazy)
 ````js
 var schema = require('package.json-schema').get();
 
 ````
-Use the schema and JSON Schema validator, for example [tv4]()
-````
+
+Use the schema in any standard compliant JSON Schema validator, for example using [tv4](https://npmjs.org/package/tv4):
+````js
 var res = tv4.validateResult(myObject, schema);
+if (!res.valid) {
+	// nooo..
 ````
+
+If a projects uses [grunt](http://gruntjs.com) it could run [grunt-tv4](https://npmjs.org/package/grunt-tv4) in the test suite, a git hook or npm prepublish script:
+
+````js
+grunt.initConfig({
+    tv4: {
+        packjson: {
+            options: {
+                root: function() {
+				    // lazy load when task is actually run
+    				return require('package.json-schema').get();
+	    		}
+            }
+            src: ['./package.json']
+        }
+    }
+})
+````
+
 
 ### local
 
@@ -51,7 +76,7 @@ This is an ongoing project and contributions are very welcome. Especially fixes 
 
 Note combining values into micro-encoding strings is discouraged (because it makes it necessary complicated for tools to parse).
 
-Also I'm game if anyone wants to cooperate on other similar schema's (bower etc), and maybe setup an github organisation which could also serve the http uris on github.io.
+Also I'm game if anyone wants to cooperate on other similar schema's (bower etc), and maybe setup a github organisation which could also serve the http uris on github.io.
 
 ## License
 
