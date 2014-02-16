@@ -16,7 +16,7 @@ function getLoader(v) {
 		if (id in cache) {
 			return cache[id];
 		}
-		var schema = JSON.parse(fs.readFileSync(path.join(id, 'schema.json'), 'utf8'));
+		var schema = JSON.parse(fs.readFileSync(path.join(__dirname, id, 'schema.json'), 'utf8'));
 		cache[id] = schema;
 		return schema;
 	};

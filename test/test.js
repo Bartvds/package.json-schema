@@ -10,7 +10,7 @@ var reporter = require('tv4-reporter').getReporter(require('miniwrite').log(), r
 var glob = Promise.promisify(require('glob'));
 var readFile = Promise.promisify(fs.readFile);
 
-var baseDir = path.dirname(module.filename);
+var baseDir = __dirname;
 console.log(baseDir);
 
 var getExp = /^(.+?)[\\\/]([\w\.-]+)[\\\/]/;
