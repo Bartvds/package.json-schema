@@ -9,3 +9,5 @@ tmp/
 dump/
 
 npm-debug.log
+
+.DS_Store
