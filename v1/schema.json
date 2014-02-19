@@ -259,7 +259,7 @@
 		},
 		"email": {
 			"type": "string",
-			"pattern": "[a-zA-Z]"
+			"pattern": "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$"
 		},
 		"path": {
 			"type": "string",
