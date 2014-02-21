@@ -3,12 +3,12 @@
 	"id": "lib://package.json",
 	"title": "package.json-schema",
 	"description": "JSON Schema for node/npm package.json",
-	"$ref": "lib://package.json#/definitions/standard",
+	"$ref": "#/definitions/standard",
 	"definitions": {
 		"minimal": {
 			"allOf": [
 				{
-					"$ref": "lib://package.json#/definitions/structure"
+					"$ref": "#/definitions/structure"
 				},
 				{
 					"required": [
@@ -21,7 +21,7 @@
 		"standard": {
 			"allOf": [
 				{
-					"$ref": "lib://package.json#/definitions/structure"
+					"$ref": "#/definitions/structure"
 				},
 				{
 					"required": [
@@ -51,18 +51,18 @@
 							}
 						},
 						"author": {
-							"$ref": "lib://package.json#/definitions/person-object"
+							"$ref": "#/definitions/person-object"
 						},
 						"contributors": {
 							"type": "array",
 							"items": {
-								"$ref": "lib://package.json#/definitions/person-object"
+								"$ref": "#/definitions/person-object"
 							}
 						},
 						"maintainers": {
 							"type": "array",
 							"items": {
-								"$ref": "lib://package.json#/definitions/person-object"
+								"$ref": "#/definitions/person-object"
 							}
 						}
 					}
@@ -73,10 +73,10 @@
 			"type": "object",
 			"properties": {
 				"name": {
-					"$ref": "lib://package.json#/definitions/name"
+					"$ref": "#/definitions/name"
 				},
 				"version": {
-					"$ref": "lib://package.json#/definitions/semver"
+					"$ref": "#/definitions/semver"
 				},
 				"description": {
 					"type": "string",
@@ -86,42 +86,42 @@
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/name"
+						"$ref": "#/definitions/name"
 					}
 				},
 				"author": {
-					"$ref": "lib://package.json#/definitions/person"
+					"$ref": "#/definitions/person"
 				},
 				"contributors": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/person"
+						"$ref": "#/definitions/person"
 					}
 				},
 				"maintainers": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/person"
+						"$ref": "#/definitions/person"
 					}
 				},
 				"homepage": {
-					"$ref": "lib://package.json#/definitions/uri-http"
+					"$ref": "#/definitions/uri-http"
 				},
 				"repository": {
-					"$ref": "lib://package.json#/definitions/repository"
+					"$ref": "#/definitions/repository"
 				},
 				"man": {
 					"oneOf": [
 						{
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						},
 						{
 							"type": "array",
 							"uniqueItems": true,
 							"items": {
-								"$ref": "lib://package.json#/definitions/path"
+								"$ref": "#/definitions/path"
 							}
 						}
 					]
@@ -129,7 +129,7 @@
 				"bugs": {
 					"oneOf": [
 						{
-							"$ref": "lib://package.json#/definitions/uri-http"
+							"$ref": "#/definitions/uri-http"
 						},
 						{
 							"type": "object",
@@ -138,23 +138,23 @@
 							],
 							"properties": {
 								"url": {
-									"$ref": "lib://package.json#/definitions/uri-http"
+									"$ref": "#/definitions/uri-http"
 								},
 								"email": {
-									"$ref": "lib://package.json#/definitions/email"
+									"$ref": "#/definitions/email"
 								}
 							}
 						}
 					]
 				},
 				"license": {
-					"$ref": "lib://package.json#/definitions/licence"
+					"$ref": "#/definitions/licence"
 				},
 				"licenses": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/licence"
+						"$ref": "#/definitions/licence"
 					}
 				},
 				"private": {
@@ -164,22 +164,22 @@
 					"type": "boolean"
 				},
 				"engines": {
-					"$ref": "lib://package.json#/definitions/string-map"
+					"$ref": "#/definitions/string-map"
 				},
 				"engineStrict": {
 					"type": "boolean"
 				},
 				"main": {
-					"$ref": "lib://package.json#/definitions/path"
+					"$ref": "#/definitions/path"
 				},
 				"bin": {
 					"oneOf": [
 						{
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						},
 						{
 
-							"$ref": "lib://package.json#/definitions/path-map"
+							"$ref": "#/definitions/path-map"
 						}
 					]
 				},
@@ -187,21 +187,21 @@
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/path"
+						"$ref": "#/definitions/path"
 					}
 				},
 				"os": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/identifier"
+						"$ref": "#/definitions/identifier"
 					}
 				},
 				"cpu": {
 					"type": "array",
 					"uniqueItems": true,
 					"items": {
-						"$ref": "lib://package.json#/definitions/identifier"
+						"$ref": "#/definitions/identifier"
 					}
 				},
 				"config": {
@@ -214,42 +214,42 @@
 					"type": "object",
 					"properties": {
 						"lib": {
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						},
 						"bin": {
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						},
 						"man": {
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						},
 						"doc": {
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						},
 						"example": {
-							"$ref": "lib://package.json#/definitions/path"
+							"$ref": "#/definitions/path"
 						}
 					}
 				},
 				"scripts": {
-					"$ref": "lib://package.json#/definitions/string-map"
+					"$ref": "#/definitions/string-map"
 				},
 				"dependencies": {
-					"$ref": "lib://package.json#/definitions/dependency-map"
+					"$ref": "#/definitions/dependency-map"
 				},
 				"devDependencies": {
-					"$ref": "lib://package.json#/definitions/dependency-map"
+					"$ref": "#/definitions/dependency-map"
 				},
 				"bundledDependencies": {
-					"$ref": "lib://package.json#/definitions/dependency-map"
+					"$ref": "#/definitions/dependency-map"
 				},
 				"bundleDependencies": {
-					"$ref": "lib://package.json#/definitions/dependency-map"
+					"$ref": "#/definitions/dependency-map"
 				},
 				"optionalDependencies": {
-					"$ref": "lib://package.json#/definitions/dependency-map"
+					"$ref": "#/definitions/dependency-map"
 				},
 				"peerDependencies": {
-					"$ref": "lib://package.json#/definitions/dependency-map"
+					"$ref": "#/definitions/dependency-map"
 				}
 			}
 		},
@@ -290,13 +290,13 @@
 					"pattern": "[a-zA-Z]"
 				},
 				"url": {
-					"$ref": "lib://package.json#/definitions/uri-http"
+					"$ref": "#/definitions/uri-http"
 				}
 			}
 
 		},
 		"repository": {
-			"$ref": "lib://package.json#/definitions/type-url"
+			"$ref": "#/definitions/type-url"
 		},
 		"licence": {
 			"oneOf": [
@@ -305,7 +305,7 @@
 					"pattern": "[a-zA-Z]"
 				},
 				{
-					"$ref": "lib://package.json#/definitions/licence-object"
+					"$ref": "#/definitions/licence-object"
 				}
 			]
 		},
@@ -318,7 +318,7 @@
 					"pattern": "[a-zA-Z]"
 				},
 				"url": {
-					"$ref": "lib://package.json#/definitions/uri-http"
+					"$ref": "#/definitions/uri-http"
 				}
 			}
 		},
@@ -329,7 +329,7 @@
 					"pattern": "[a-zA-Z]"
 				},
 				{
-					"$ref": "lib://package.json#/definitions/person-object"
+					"$ref": "#/definitions/person-object"
 				}
 			]
 		},
@@ -344,10 +344,10 @@
 					"pattern": "[a-zA-Z]"
 				},
 				"email": {
-					"$ref": "lib://package.json#/definitions/email"
+					"$ref": "#/definitions/email"
 				},
 				"url": {
-					"$ref": "lib://package.json#/definitions/uri-http"
+					"$ref": "#/definitions/uri-http"
 				}
 			}
 		},
@@ -365,13 +365,13 @@
 			"additionalProperties": false,
 			"patternProperties": {
 				".+": {
-					"$ref": "lib://package.json#/definitions/path",
+					"$ref": "#/definitions/path",
 					"pattern": "[a-zA-Z]"
 				}
 			}
 		},
 		"dependency-map": {
-			"$ref": "lib://package.json#/definitions/string-map"
+			"$ref": "#/definitions/string-map"
 		}
 	}
 }
