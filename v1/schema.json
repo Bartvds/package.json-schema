@@ -3,7 +3,9 @@
 	"id": "lib://package.json",
 	"title": "package.json-schema",
 	"description": "JSON Schema for node/npm package.json",
-	"$ref": "#/definitions/standard",
+	"allOf": [{
+		"$ref": "#/definitions/standard"
+	}],
 	"definitions": {
 		"minimal": {
 			"allOf": [
@@ -45,7 +47,7 @@
 							"type": "object",
 							"properties": {
 								"test": {
-									"type" : "string",
+									"type": "string",
 									"pattern": "[a-zA-Z]"
 								}
 							}
